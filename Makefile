@@ -16,3 +16,7 @@ include makefiles/help.mk
 .PHONY: deploy-docs
 deploy-docs: ## ドキュメントをデプロイする
 	git subtree push --prefix docs/html/ origin gh-pages
+
+.PHONY: csv2json
+csv2json: data.csv ## data.csvをdata.jsonに出力
+	cat data.csv | ./csv2json.sh | jq '.' | tee data.json
